@@ -30,6 +30,7 @@ document.onkeypress = function(event) {
 
 // If "Enter" is pressed, game starts
     if (startKey === "Enter") {
+
     console.log("Start key: " + startKey);
     document.getElementById("start").textContent = "Start guessing!";
     document.getElementById("wins").textContent = wins;
@@ -40,11 +41,9 @@ document.onkeypress = function(event) {
 // Takes the user input
         document.onkeypress = function(event) {
             userGuess = event.key;
-            console.log(userGuess);
             userGuesses.push(userGuess);
             guessesLeft--;
-            //document.getElementById("guesses").textContent = guessesLeft;
-            console.log("Guesses Left: " + guessesLeft);
+            document.getElementById("guesses").textContent = guessesLeft;
 
 // Puts userGuesses on the console
             for (i = 0; i < userGuesses.length; i++) {
@@ -59,18 +58,18 @@ document.onkeypress = function(event) {
                 userGuesses = [];
                 document.getElementById("pickedLetters").textContent = userGuesses;
                 document.getElementById("wins").textContent = wins;
-                console.log("Random Letter: " + randomLetter);
                 document.getElementById("guesses").textContent = guessesLeft;
                 randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+                console.log("Random Letter: " + randomLetter);
             } else if (guessesLeft === 0) {
                 losses++;
                 guessesLeft = 10;
                 userGuesses = [];
                 document.getElementById("pickedLetters").textContent = userGuesses;
                 document.getElementById("losses").textContent = losses;
-                console.log("Random letter: " + randomLetter);
                 document.getElementById("guesses").textContent = guessesLeft;
                 randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+                console.log("Random Letter: " + randomLetter);
             }
 
 // If losses = 3 or wins = 3 end game. Asks use to press 'space' to play again

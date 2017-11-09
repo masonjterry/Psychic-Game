@@ -20,8 +20,11 @@ var userGuess;
 // startKey declaration
 var startKey;
 
-// Starts the game with "Enter"
+// Random letter picker
+var randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+console.log("Random letter: " + randomLetter);
 
+// Press "Enter"
 document.onkeypress = function(event) {
     startKey = event.key;
 
@@ -32,6 +35,7 @@ document.onkeypress = function(event) {
     document.getElementById("wins").textContent = wins;
     document.getElementById("losses").textContent = losses;
     document.getElementById("guesses").textContent = guessesLeft;
+    document.getElementById("pickedLetters").textContent = userGuesses;
 
 // Takes the user input
         document.onkeypress = function(event) {
@@ -39,12 +43,9 @@ document.onkeypress = function(event) {
             console.log(userGuess);
             userGuesses.push(userGuess);
             guessesLeft--;
-            document.getElementById("guesses").textContent = guessesLeft;
+            //document.getElementById("guesses").textContent = guessesLeft;
             console.log("Guesses Left: " + guessesLeft);
 
-// Random letter picker
-            var randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-            console.log("Random letter: " + randomLetter);
 // Puts userGuesses on the console
             for (i = 0; i < userGuesses.length; i++) {
                 document.getElementById("pickedLetters").textContent = userGuesses;
@@ -60,6 +61,7 @@ document.onkeypress = function(event) {
                 document.getElementById("wins").textContent = wins;
                 console.log("Random Letter: " + randomLetter);
                 document.getElementById("guesses").textContent = guessesLeft;
+                randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
             } else if (guessesLeft === 0) {
                 losses++;
                 guessesLeft = 10;
@@ -68,8 +70,10 @@ document.onkeypress = function(event) {
                 document.getElementById("losses").textContent = losses;
                 console.log("Random letter: " + randomLetter);
                 document.getElementById("guesses").textContent = guessesLeft;
+                randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
             }
 
+// If losses = 3 or wins = 3 end game. Asks use to press 'space' to play again
             if (losses === 3 || wins === 3) {
                 document.getElementById("start").textContent = "Game over. Press 'Space Bar' to play again!";
                 document.onkeypress = function(event) {
